@@ -43,4 +43,4 @@ def duration(vid_file_path):
 
 
 if __name__ == "__main__":
-    print(duration("examplefile.mp4"))  # 10.008
+    print(duration("examplefile"))  # 10.008
