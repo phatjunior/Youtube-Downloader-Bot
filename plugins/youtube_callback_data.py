@@ -25,11 +25,11 @@ async def catch_youtube_fmtid(c, m):
         print(media_type)
         if media_type == 'audio':
             buttons = InlineKeyboardMarkup([[InlineKeyboardButton(
-                "Audio", callback_data=f"{media_type}||{format_id}||{yturl}"), InlineKeyboardButton("Document",
+                "Аудио", callback_data=f"{media_type}||{format_id}||{yturl}"), InlineKeyboardButton("Документ",
                                                                                                     callback_data=f"docaudio||{format_id}||{yturl}")]])
         else:
             buttons = InlineKeyboardMarkup([[InlineKeyboardButton(
-                "Video", callback_data=f"{media_type}||{format_id}||{yturl}"), InlineKeyboardButton("Document",
+                "Видео", callback_data=f"{media_type}||{format_id}||{yturl}"), InlineKeyboardButton("Документ",
                                                                                                     callback_data=f"docvideo||{format_id}||{yturl}")]])
 
         await m.edit_message_reply_markup(buttons)
@@ -65,7 +65,7 @@ async def catch_youtube_dldata(c, q):
         img.save(thumb_image_path, "JPEG")
      #   print(thumb_image_path)
     if not cb_data.startswith(("video", "audio", "docaudio", "docvideo")):
-        print("no data found")
+        print(" Не удалось найти данные ")
         raise ContinuePropagation
 
     filext = "%(title)s.%(ext)s"
@@ -74,9 +74,9 @@ async def catch_youtube_dldata(c, q):
     if not os.path.isdir(userdir):
         os.makedirs(userdir)
     await q.edit_message_reply_markup(
-        InlineKeyboardMarkup([[InlineKeyboardButton("Downloading...", callback_data="down")]]))
+        InlineKeyboardMarkup([[InlineKeyboardButton("Скачиваю...", callback_data="down")]]))
     filepath = os.path.join(userdir, filext)
-    # await q.edit_message_reply_markup([[InlineKeyboardButton("Processing..")]])
+    # await q.edit_message_reply_markup([[InlineKeyboardButton(" Обрабатываю ..")]])
 
     audio_command = [
         "youtube-dl",
@@ -142,14 +142,14 @@ async def catch_youtube_dldata(c, q):
     if med:
         loop.create_task(send_file(c, q, med, filename))
     else:
-        print("med not found")
+        print("Не удалось найти")
 
 
 async def send_file(c, q, med, filename):
     print(med)
     try:
         await q.edit_message_reply_markup(
-            InlineKeyboardMarkup([[InlineKeyboardButton("Uploading...", callback_data="down")]]))
+            InlineKeyboardMarkup([[InlineKeyboardButton("Загружаю...", callback_data="down")]]))
         await c.send_chat_action(chat_id=q.message.chat.id, action="upload_document")
         # this one is not working
         await q.edit_message_media(media=med)
