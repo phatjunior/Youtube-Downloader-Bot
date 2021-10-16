@@ -25,10 +25,10 @@ async def catch_youtube_fmtid(c, m):
         print(media_type)
         if media_type == 'audio':
             buttons = InlineKeyboardMarkup([[InlineKeyboardButton(
-                "Аудио", callback_data=f"{media_type}||{format_id}||{yturl}")]])
+                "Скачать аудио", callback_data=f"{media_type}||{format_id}||{yturl}")]])
         else:
             buttons = InlineKeyboardMarkup([[InlineKeyboardButton(
-                "Видео", callback_data=f"{media_type}||{format_id}||{yturl}")]])
+                "Скачать видео", callback_data=f"{media_type}||{format_id}||{yturl}")]])
 
         await m.edit_message_reply_markup(buttons)
 
@@ -74,7 +74,7 @@ async def catch_youtube_dldata(c, q):
     await q.edit_message_reply_markup(
         InlineKeyboardMarkup([[InlineKeyboardButton("Скачиваю...", callback_data="down")]]))
     filepath = os.path.join(userdir, filext)
-    # await q.edit_message_reply_markup([[InlineKeyboardButton(" Обрабатываю ..")]])
+    # await q.edit_message_reply_markup([[InlineKeyboardButton(" Обрабатываю..")]])
 
     audio_command = [
         "youtube-dl",
