@@ -75,7 +75,7 @@ async def catch_youtube_dldata(c, q):
     await q.edit_message_reply_markup(
         InlineKeyboardMarkup([[InlineKeyboardButton("Скачиваю...", callback_data="down")]]))
     filepath = os.path.join(userdir, filext)
-    # await q.edit_message_reply_markup([[InlineKeyboardButton(" Обрабатываю..")]])
+    await q.edit_message_reply_markup([[InlineKeyboardButton(" Обрабатываю..")]])
 
     audio_command = [
         "youtube-dl",
@@ -159,5 +159,6 @@ async def send_file(c, q, med, filename):
         try:
             os.remove(filename)
             os.remove(thumb_image_path)
+            os.remove(filext)
         except:
             pass
