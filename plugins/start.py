@@ -9,6 +9,6 @@ async def start(client, message):
         [InlineKeyboardButton(
             "Сообщить о проблемах", url="https://t.me/aryanvikash")]
     ])
-    welcomed = f"Привет <b>{message.from_user.first_name}</b> пришли мне ссылку на ютуб видео"
+    welcomed = f"Привет <b>{message.from_user.first_name}</b> пришли мне ссылку на ютуб видео..."
     await message.reply_text(welcomed, reply_markup=joinButton)
     raise StopPropagation
